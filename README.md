@@ -1,2 +1,2 @@
 # pythonSectionTasks
-tasks of python section
+tasks of social networks section
