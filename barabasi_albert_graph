@@ -1,0 +1,18 @@
+def barabasi_albert_graph(N, m):
+    # 1. Start with a clique of m+1 nodes
+    G = nx.complete_graph(m + 1)
+    for i in range(G.number_of_nodes(), N):
+        # 2. Select m different nodes at random, weighted by their degree.
+        new_neighbors = []
+        possible_neighbors = list(G.nodes)
+        for _ in range(m):
+            degrees = [G.degree(n) for n in possible_neighbors]
+            j = random.choices(possible_neighbors, degrees)[0]
+            new_neighbors.append(j)
+            possible_neighbors.remove(j)
+        
+        # 3. Add a new node i and link it with the m nodes from the previous step.
+        for j in new_neighbors:
+            G.add_edge(i, j)
+
+    return G
